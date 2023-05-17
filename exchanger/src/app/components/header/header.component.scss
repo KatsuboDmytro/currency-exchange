@@ -1,0 +1,24 @@
+@import '../../../assets/scss/display-flex';
+.header{
+    @extend .flex-sb-center;
+    &__logo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__logo-photo{
+        width: 70px;
+    }
+    &__logo-subtitle{
+        color: white;
+        font-weight: 700;
+    }
+    &__currency{
+        @extend .flex-sb-center;
+        width: 20%;
+        color: white;
+    }
+    &__currency-text{
+        font-weight: 700;
+    }
+}

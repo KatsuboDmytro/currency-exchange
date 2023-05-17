@@ -1,0 +1,47 @@
+@import '../../../assets/scss/display-flex';
+
+.exchange{
+    @extend .flex-sb-center;
+    &__left, &__right{
+        width: 50%;
+    }
+    &__box{
+        border: 3px solid white;
+        border-radius: 50px;
+        width: 50%;
+        height: 300px;
+        margin: 100px auto;
+        padding: 30px;
+        @extend .flex-sa-column;
+    }
+    &__box-select, &__box-input{
+        height: 50px;
+        font-size: 32px;
+        color: white;
+        background-color: black;
+    }
+    &__box-input{
+        border-bottom: 2px solid white;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        outline: none;
+    }
+}
+.bgUSD{
+    width: 350px;
+    position: absolute;
+    top: 100px;
+    left: -13%;
+}
+.bgEUR{
+    width: 350px;
+    position: absolute;
+    top: 100px;
+    right: -13%;
+}
+.devide{
+    position: absolute;
+    top: 70px;
+    right: 46%;
+}

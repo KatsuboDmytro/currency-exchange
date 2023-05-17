@@ -1,0 +1,10 @@
+.flex-sb-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex-sa-column {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
