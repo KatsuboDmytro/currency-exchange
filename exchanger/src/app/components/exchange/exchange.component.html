@@ -2,8 +2,15 @@
     <img class="bgUSD" src="../../../assets/img/bgUSD.svg" alt="bgUSD">
     <aside class="exchange__left">
         <div class="exchange__box">
-            <select class="exchange__box-select" name="" id="">USD</select>
-            <input class="exchange__box-input" placeholder="Enter amount" type="text">
+            <div class="select-style">
+                <div>{{currFrom}}</div>
+                <select #select1 class="exchange__box-select" (input)="changeFrom(select1.value)">
+                    <option>Currency</option>
+                    <option *ngFor="let item of currencies$ | async" [value]="item.r030">{{ item.txt }}</option>
+                </select>
+            </div>
+            <input class="exchange__box-input" placeholder="Enter amount" type="text"  
+            id="inputFrom" [value]="inputFrom" (input)="onInputChange($event)">
         </div>
     </aside>
 
@@ -12,8 +19,15 @@
 
     <aside class="exchange__right">
         <div class="exchange__box">
-            <select class="exchange__box-select" name="" id="">USD</select>
-            <input class="exchange__box-input" placeholder="Enter amount" type="text">
+            <div class="select-style">
+                <div>{{currTo}}</div>
+                <select #select2 class="exchange__box-select" (input)="changeTo(select2.value)">
+                    <option>Currency</option>
+                    <option *ngFor="let item of currencies$ | async" [value]="item.r030">{{ item.txt }}</option>
+                </select>
+            </div>
+            <input class="exchange__box-input" placeholder="Enter amount" type="text"  
+            id="inputTo" [value]="inputTo" (input)="onInputChange($event)">
         </div>
     </aside>
     <img class="bgEUR" src="../../../assets/img/bgEUR.svg" alt="bgEUR">
