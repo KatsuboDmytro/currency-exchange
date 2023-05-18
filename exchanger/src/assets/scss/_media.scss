@@ -1,0 +1,52 @@
+@import './display-flex';
+.header {
+    // Styles for all screen sizes
+  
+    @media screen and (max-width: 1330px) {
+
+    }
+  
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+      // Styles for screens with a width between 769px and 1024px
+    }
+  
+    @media screen and (min-width: 1025px) {
+      // Styles for screens with a minimum width of 1025px
+    }
+  }
+  .header__currency {
+    @media screen and (max-width: 1330px) {
+        width: 30%;
+        color: white;
+    }
+  
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+      // Styles for screens with a width between 769px and 1024px
+    }
+  
+    @media screen and (min-width: 1025px) {
+      // Styles for screens with a minimum width of 1025px
+    }
+  }
+  /*.header{
+    &__logo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__logo-photo{
+        width: 70px;
+    }
+    &__logo-subtitle{
+        color: white;
+        font-weight: 700;
+    }
+    &__currency{
+        @extend .flex-sb-center;
+        width: 20%;
+        color: white;
+    }
+    &__currency-text{
+        font-weight: 700;
+    }
+}*/

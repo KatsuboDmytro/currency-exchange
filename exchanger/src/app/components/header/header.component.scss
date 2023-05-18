@@ -1,4 +1,5 @@
 @import '../../../assets/scss/display-flex';
+
 .header{
     @extend .flex-sb-center;
     &__logo{
@@ -17,8 +18,22 @@
         @extend .flex-sb-center;
         width: 20%;
         color: white;
+        @media screen and (max-width: 1330px) {
+            width: 30%;
+        }
+        @media screen and (max-width: 970px) {
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+        }
+        @media screen and (max-width: 498px) {
+            width: 50%;
+        }
     }
     &__currency-text{
         font-weight: 700;
+        @media screen and (max-width: 970px) {
+            padding-bottom: 20px;
+        }
     }
 }

@@ -12,59 +12,86 @@ import { ReturnedData } from 'src/app/interfaces/returned-data';
 export class ExchangeComponent implements OnInit{
   
   inputFrom: number = 1;
+  rateFrom: number = 1;
   currFrom: string = '';
   infoFrom: [] = [];
-
+  
   inputTo: number = 1;
+  rateTo: number = 1;
   currTo: string = '';
   infoTo: [] = [];
+
+  isRotated: boolean = false;
+  whichInput: number = 1;
 
   @Input() currencies$!: Observable<ReturnedData[]>;
 
   constructor(private http: HttpClient) { }
-  ngOnInit() { }
+  ngOnInit() {  }
+  
+
+  rotateImage(isRotated: boolean) {
+    this.isRotated = !isRotated;
+    console.log(this.isRotated);
+  }
 
   onInputChange(e: Event): void{
     e.preventDefault();
     const target = e.target as HTMLInputElement;
     if (target.id === 'inputFrom') {
       this.inputFrom = parseFloat(target.value);
+      this.whichInput = 1;
     } else if (target.id === 'inputTo') {
       this.inputTo = parseFloat(target.value);
+      this.whichInput = 2;
     }
-    console.log(this.inputFrom);
-    console.log(this.inputTo);
+    this.convertCurrency('');
+  }
+
+  convertCurrency(selectedValue: string) {
+    let newAmount = 0;
+
+    if(this.whichInput === 1){
+      newAmount = this.inputFrom * (this.rateFrom / this.rateTo);
+      this.inputTo = newAmount;
+    } else if(this.whichInput === 2){
+      newAmount = this.inputTo * (this.rateTo / this.rateFrom);
+      this.inputFrom = newAmount;
+    }
+
+    this.currencies$.pipe(
+      map((curr: any[]) => {
+        return curr.filter((item: any) => item.r030 == selectedValue ? (
+          (this.whichInput === 1) ? this.inputTo = newAmount : (this.whichInput === 2) ? this.inputFrom = newAmount : ''
+        ) : '');
+      })
+    ).subscribe((filteredItem: any) => {    });
   }
 
   changeFrom(selectedValue: string): void {
     this.currencies$.pipe(
       map((curr: any[]) => {
-        return curr.filter((item: any) => item.r030 == selectedValue ? this.inputFrom = item.rate : '');
+        return curr.filter((item: any) => item.r030 == selectedValue ? this.rateFrom = item.rate : '');
       }),
       map((curr: any[]) => {
         return curr.filter((item: any) => item.r030 == selectedValue ? this.currFrom = item.cc : '');
       })
     ).subscribe((filteredItem: any) => {    
-      this.infoFrom = filteredItem;
-      console.log(this.infoFrom);
-      console.log(this.inputFrom);
-      console.log(this.currFrom);
+      this.convertCurrency(selectedValue);
     });
-  
-    console.log(selectedValue);
   }
 
   changeTo(selectedValue: string): void {
     this.currencies$.pipe(
       map((curr: any[]) => {
+        return curr.filter((item: any) => item.r030 == selectedValue ? this.rateTo = item.rate : '');
+      }),
+      map((curr: any[]) => {
         return curr.filter((item: any) => item.r030 == selectedValue ? this.currTo = item.cc : '');
       })
     ).subscribe((filteredItem: any) => {
       this.infoTo = filteredItem;
-      console.log(this.infoTo);
-      console.log(this.currTo);
+      this.convertCurrency(selectedValue);
     });
-  
-    console.log(selectedValue);
   }
 }

@@ -5,8 +5,8 @@
             <div class="select-style">
                 <div>{{currFrom}}</div>
                 <select #select1 class="exchange__box-select" (input)="changeFrom(select1.value)">
-                    <option>Currency</option>
-                    <option *ngFor="let item of currencies$ | async" [value]="item.r030">{{ item.txt }}</option>
+                    <option>Current</option>
+                    <option *ngFor="let item of currencies$ | async"[value]="item.r030">{{ item.txt }}</option>
                 </select>
             </div>
             <input class="exchange__box-input" placeholder="Enter amount" type="text"  
@@ -14,7 +14,7 @@
         </div>
     </aside>
 
-    <img src="../../../assets/img/changer.svg" alt="changer">
+    <img [class.rotate]="isRotated" (click)="rotateImage(isRotated)" src="../../../assets/img/changer.svg" alt="changer" class="changer">
     <img class="devide" src="../../../assets/img/devide.svg" alt="devide">
 
     <aside class="exchange__right">
@@ -22,8 +22,8 @@
             <div class="select-style">
                 <div>{{currTo}}</div>
                 <select #select2 class="exchange__box-select" (input)="changeTo(select2.value)">
-                    <option>Currency</option>
-                    <option *ngFor="let item of currencies$ | async" [value]="item.r030">{{ item.txt }}</option>
+                    <option>Current</option>
+                    <option *ngFor="let item of currencies$ | async"[value]="item.r030">{{ item.txt }}</option>
                 </select>
             </div>
             <input class="exchange__box-input" placeholder="Enter amount" type="text"  
